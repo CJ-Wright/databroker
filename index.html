@@ -1,0 +1,255 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data Broker &mdash; DataBroker 0.0.6 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="DataBroker 0.0.6 documentation" href="#"/>
+        <link rel="next" title="Searching for Data" href="searching.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> DataBroker
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="searching.html">Searching for Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fetching.html">Fetching Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What&#8217;s new</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">DataBroker</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="#">Docs</a> &raquo;</li>
+      
+    <li>Data Broker</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data-broker">
+<h1>Data Broker<a class="headerlink" href="#data-broker" title="Permalink to this headline">¶</a></h1>
+<p>The databroker Python package provdies a simple, user-friendly interface
+for retireving stored data and metadata. It retrieves data into memory as
+built-in Python data types and numpy arrays.</p>
+<p>Both simple and complex searches are supported. Convenience fucntions
+provide a simple way to handle tabular data and image sequences.</p>
+<div class="section" id="examples-of-basic-usage">
+<h2>Examples of Basic Usage<a class="headerlink" href="#examples-of-basic-usage" title="Permalink to this headline">¶</a></h2>
+<p>If they are not already imported, import <code class="docutils literal"><span class="pre">DataBroker</span></code> and its convenience
+fucntions. (This step may already be done as part of an
+<a class="reference external" href="http://nsls-ii.github.io/beamline-configuration.html#ipython-profiles">IPython profile</a>.)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">databroker</span> <span class="kn">import</span> <span class="n">DataBroker</span> <span class="k">as</span> <span class="n">db</span><span class="p">,</span> <span class="n">get_table</span><span class="p">,</span> <span class="n">get_images</span><span class="p">,</span> <span class="n">get_events</span>
+</pre></div>
+</div>
+<div class="section" id="example-1-load-data-in-a-table">
+<h3>Example 1: Load data in a table.<a class="headerlink" href="#example-1-load-data-in-a-table" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">last_run</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">get_table</span><span class="p">(</span><span class="n">last_run</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To exclude non-scalar data* like images, which take time to load and are
+usually useful to view in tabular form, use the <code class="docutils literal"><span class="pre">fill</span></code> keyword like so:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">table</span> <span class="o">=</span> <span class="n">get_table</span><span class="p">(</span><span class="n">last_run</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>*To be precise, <code class="docutils literal"><span class="pre">fill=False</span></code> excludes <em>externally stored</em> data, which
+almost always means larges files and array data.</p>
+</div>
+<div class="section" id="example-2-load-select-fields-of-data">
+<h3>Example 2: Load select fields of data.<a class="headerlink" href="#example-2-load-select-fields-of-data" title="Permalink to this headline">¶</a></h3>
+<p>For faster loading, restrict the table to include only certain columns.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">last_run</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">get_table</span><span class="p">(</span><span class="n">last_run</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;motor_position&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-3-load-images">
+<h3>Example 3: Load images.<a class="headerlink" href="#example-3-load-images" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">last_run</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">images</span> <span class="o">=</span> <span class="n">get_images</span><span class="p">(</span><span class="n">last_run</span><span class="p">,</span> <span class="s1">&#39;ccd_image&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To plot the first image using matplotlib:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="searching.html"><em>Searching for Data</em></a> and <a class="reference internal" href="fetching.html"><em>Fetching Data</em></a> for details.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="searching.html" class="btn btn-neutral float-right" title="Searching for Data" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015 Brookhaven National Lab.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.6',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
